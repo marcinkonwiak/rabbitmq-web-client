@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>rabbitMQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}"
+          type="text/css"/>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+</head>
+
+<body class="bg-dark-500 text-light-300 h-screen m-0 flex">
+<div class="flex flex-row flex-1 divide-x divide-light-600">
+    {% include "common/sidebar.html" %}
+    <div id="mid-col" class="flex-col flex-1">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

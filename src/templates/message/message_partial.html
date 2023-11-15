@@ -1,0 +1,48 @@
+<form
+        class="px-6 pt-4 flex flex-col gap-y-3 divide-y divide-light-600 h-full"
+        hx-post="/message"
+        hx-ext="json-enc"
+        hx-target="#send_button"
+        hx-swap="outerHTML"
+>
+    <p class="px-3 text-3xl font-semibold">{{ message.name }}</p>
+
+    <div class="p-3">
+        <p class="text-xl font-semibold text-light-500">Config</p>
+        <div class="px-3 pt-5 flex flex-row gap-x-5">
+            <div class="flex flex-col flex-1 flex-wrap divide-y divide-light-600 basis-3/4">
+                <div class="flex flex-row justify-between items-baseline py-2 gap-x-3">
+                    <p class="w-full text-light-500">Queue</p>
+                    <div class="w-full">
+                        <label for="queue" class="hidden"></label>
+                        <input type="text" name="queue" id="queue"
+                               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-600 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                               {% if message.queue %} value={{ message.queue }} {% endif %}>
+                    </div>
+                </div>
+                <div class="flex flex-row justify-between items-baseline py-2 gap-x-3">
+                    <p class="w-full text-light-500">Exchange</p>
+                    <div class="w-full">
+                        <label for="exchange" class="hidden"></label>
+                        <input type="text" name="exchange" id="exchange"
+                               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-600 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                               {% if message.exchange %} value={{ message.exchange }} {% endif %}>
+                    </div>
+                </div>
+            </div>
+            <div class="py-2 flex flex-col flex-1 basis-1/4">
+                {% include "common/send_button/send_button.html" %}
+            </div>
+        </div>
+    </div>
+
+    <div class="px-3 pt-3 pb-5 grow flex flex-col">
+        <p class="text-xl font-semibold text-light-500">Data</p>
+        <div class="pt-5 grow">
+            <label for="data" class="hidden"></label>
+            <textarea name="data" id="data"
+                      class="w-full h-full pt-1 px-2 rounded-xl text-light-500 border border-light-600 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500 resize-none"
+            >{% if message.body %}{{ message.body }}{% endif %}</textarea>
+        </div>
+    </div>
+</form>
