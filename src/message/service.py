@@ -1,9 +1,6 @@
-from typing import Optional
-
+from message.models import Message
 from sqlalchemy.orm import Session
 
-from message.models import Message
 
-
-def get(db_session: Session, message_id: int) -> Optional[Message]:
+def get(db_session: Session, message_id: int) -> Message | None:
     return db_session.get(Message, message_id)

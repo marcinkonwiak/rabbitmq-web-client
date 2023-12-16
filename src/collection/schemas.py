@@ -1,8 +1,5 @@
-from typing import List
-
-from pydantic import BaseModel, ConfigDict
-
 from message.schemas import MessageReadMinimal
+from pydantic import BaseModel, ConfigDict
 
 
 class CollectionReadMinimal(BaseModel):
@@ -10,8 +7,8 @@ class CollectionReadMinimal(BaseModel):
 
     id: int
     name: str
-    messages: List[MessageReadMinimal]
+    messages: list[MessageReadMinimal]
 
 
 class CollectionList(BaseModel):
-    collections: List[CollectionReadMinimal]
+    collections: list[CollectionReadMinimal]

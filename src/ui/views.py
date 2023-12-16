@@ -1,9 +1,7 @@
-from fastapi import APIRouter, Request
-
 from collection.flows import get_collection_list
 from database.core import DbSession
+from fastapi import APIRouter, Request
 from templates import Templates
-
 
 router = APIRouter()
 

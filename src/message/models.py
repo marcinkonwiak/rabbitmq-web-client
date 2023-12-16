@@ -1,8 +1,7 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-
 from database.core import Base
 from models import ItemSettingsMixin
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 
 
 class Message(Base, ItemSettingsMixin):

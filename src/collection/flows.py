@@ -1,7 +1,6 @@
-from sqlalchemy.orm import Session
-
 from collection import service as collection_service
 from collection.schemas import CollectionList
+from sqlalchemy.orm import Session
 
 
 def get_collection_list(db_session: Session) -> CollectionList:

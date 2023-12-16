@@ -1,12 +1,11 @@
-from typing import Optional, Sequence
+from collections.abc import Sequence
 
+from collection.models import Collection
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from collection.models import Collection
 
-
-def get(db_session: Session, collection_id: int) -> Optional[Collection]:
+def get(db_session: Session, collection_id: int) -> Collection | None:
     return db_session.get(Collection, collection_id)
 
 

@@ -1,10 +1,8 @@
-from fastapi import APIRouter, Request
-
 from database.core import DbSession
+from fastapi import APIRouter, Request
 from message.flows import get_message_data
 from models import PrimaryKey
 from templates import Templates
-
 
 router = APIRouter()
 
@@ -19,8 +17,7 @@ def get_message(
     message = get_message_data(db_session, message_id)
 
     return templates.HtmxAwareTemplateResponse(
-        "message/message_partial.html",
-        {"request": request, "message": message}
+        "message/message.html", {"request": request, "message": message}
     )
 
 
