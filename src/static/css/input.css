@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --dark-300: theme('colors.dark.300');
+  --dark-400: theme('colors.dark.400');
+  --dark-500: theme('colors.dark.500');
+
+  --light-300: theme('colors.light.300');
+  --light-400: theme('colors.light.400');
+  --light-500: theme('colors.light.500');
+  --light-600: theme('colors.light.600');
+
+  --accent-500: theme('colors.accent.500');
+}
+
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--light-600) var(--dark-400);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--dark-400);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--light-600);
+  border-radius: 14px;
+  border: 2px solid var(--dark-400);
+}

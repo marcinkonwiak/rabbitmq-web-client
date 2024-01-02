@@ -17,7 +17,11 @@ def get_message(
     message = get_message_data(db_session, message_id)
 
     return templates.HtmxAwareTemplateResponse(
-        "message/message.html", {"request": request, "message": message}
+        "message/message.html",
+        {
+            "request": request,
+            "message": message,
+        },
     )
 
 

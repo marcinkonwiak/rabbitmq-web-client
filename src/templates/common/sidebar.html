@@ -33,16 +33,18 @@
                     hover:bg-dark-300">
                     {{ collection.name }}
                 </div>
-                <div class="flex flex-col ml-3 border-l border-light-600">
-                    {% for message in collection.messages %}
-                        <a href="/message/{{ message.id }}" class="p-1 px-5 ml-5 mt-3
-                        text-center whitespace-nowrap overflow-hidden text-ellipsis
-                        rounded-xl text-light-500 border border-light-600 bg-dark-400
-                        hover:bg-dark-300">
-                            {{ message.name }}
-                        </a>
-                    {% endfor %}
-                </div>
+                {% if collection.messages %}
+                    <div class="flex flex-col ml-3 mt-3 border-l border-light-600 gap-y-3">
+                        {% for message in collection.messages %}
+                            <a href="/message/{{ message.id }}" class="p-1 px-5 ml-5
+                            text-center whitespace-nowrap overflow-hidden text-ellipsis
+                            rounded-xl text-light-500 border border-light-600 bg-dark-400
+                            hover:bg-dark-300">
+                                {{ message.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

@@ -1,15 +1,37 @@
-from pydantic import conint
-from sqlalchemy import Column, String, Boolean, Integer
-
 from database.core import Base
+from pika.delivery_mode import DeliveryMode
+from pydantic import conint
+from sqlalchemy import Boolean, Column, DateTime, Enum, Integer, String
+from sqlalchemy.dialects.sqlite import JSON
 
 PrimaryKey = conint(gt=0, lt=2147483647)
 
 
-class SettingsMixin(object):
+class SettingsMixin:
     amqp_url = Column(String)
-    queue = Column(String)
+
+    # Routing details
+    routing_key = Column(String)
     exchange = Column(String)
+    consumer_tag = Column(String)
+    delivery_tag = Column(Integer)
+    redelivered = Column(Boolean)
+
+    # Message properties
+    content_type = Column(String)
+    content_encoding = Column(String)
+    headers = Column(JSON)
+    delivery_mode = Column(Enum(DeliveryMode))
+    priority = Column(Integer)
+    correlation_id = Column(String)
+    reply_to = Column(String)
+    expiration = Column(String)
+    message_id = Column(String)
+    timestamp = Column(DateTime)
+    type = Column(String)
+    user_id = Column(String)
+    app_id = Column(String)
+    cluster_id = Column(String)
 
 
 class ItemSettingsMixin(SettingsMixin):
@@ -17,6 +39,6 @@ class ItemSettingsMixin(SettingsMixin):
 
 
 class GlobalSettings(Base, SettingsMixin):
-    __tablename__ = 'global_settings'
+    __tablename__ = "global_settings"
 
     id = Column(Integer, primary_key=True)

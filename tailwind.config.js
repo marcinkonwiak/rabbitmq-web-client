@@ -4,7 +4,11 @@ module.exports = {
       "./src/templates/**/*.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        '15-8rem': '15.8rem',
+      }
+    },
     colors: {
       "dark": {
         300: "#262534",

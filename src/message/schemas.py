@@ -1,21 +1,18 @@
-from typing import Optional
-
 from pydantic import BaseModel, ConfigDict
+from schemas import SettingsReadMixin
 
 
 class MessageSend(BaseModel):
-    queue: str
+    routing_key: str
     exchange: str
     data: str
 
 
-class MessageRead(BaseModel):
+class MessageRead(BaseModel, SettingsReadMixin):
     model_config = ConfigDict(from_attributes=True)
 
     name: str
-    queue: Optional[str]
-    exchange: Optional[str]
-    body: Optional[str]
+    body: str | None
 
 
 class MessageReadMinimal(BaseModel):
