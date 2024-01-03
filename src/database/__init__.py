@@ -1,2 +1,2 @@
-import collection.models
-import message.models
+import src.collection.models
+import src.message.models

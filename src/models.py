@@ -1,8 +1,9 @@
-from database.core import Base
 from pika.delivery_mode import DeliveryMode
 from pydantic import conint
 from sqlalchemy import Boolean, Column, DateTime, Enum, Integer, String
 from sqlalchemy.dialects.sqlite import JSON
+
+from src.database.core import Base
 
 PrimaryKey = conint(gt=0, lt=2147483647)
 

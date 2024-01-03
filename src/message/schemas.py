@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict
-from schemas import SettingsReadMixin
+
+from src.schemas import SettingsReadMixin
 
 
 class MessageSend(BaseModel):

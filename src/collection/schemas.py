@@ -1,5 +1,6 @@
-from message.schemas import MessageReadMinimal
 from pydantic import BaseModel, ConfigDict
+
+from src.message.schemas import MessageReadMinimal
 
 
 class CollectionReadMinimal(BaseModel):

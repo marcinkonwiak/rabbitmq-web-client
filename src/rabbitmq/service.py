@@ -1,5 +1,6 @@
 import pika
-from message.models import Message
+
+from src.message.models import Message
 
 
 def publish_message(message: Message):

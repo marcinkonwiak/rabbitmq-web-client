@@ -3,11 +3,12 @@ from collections.abc import Mapping
 from os import PathLike
 from typing import Annotated, cast
 
-from config import TEMPLATES_DIR
 from fastapi import Depends, Request
 from starlette.background import BackgroundTask
 from starlette.templating import Jinja2Templates, _TemplateResponse  # noqa
-from ui.flows import CommonUIData
+
+from src.config import TEMPLATES_DIR
+from src.ui.flows import CommonUIData
 
 
 class HtmxAwareTemplates(Jinja2Templates):

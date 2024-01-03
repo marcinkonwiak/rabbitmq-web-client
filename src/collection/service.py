@@ -1,8 +1,9 @@
 from collections.abc import Sequence
 
-from collection.models import Collection
 from sqlalchemy import select
 from sqlalchemy.orm import Session
+
+from .models import Collection
 
 
 def get(db_session: Session, collection_id: int) -> Collection | None:

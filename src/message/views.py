@@ -1,8 +1,10 @@
-from database.core import DbSession
 from fastapi import APIRouter, Request
-from message.flows import get_message_data
-from models import PrimaryKey
-from templates import Templates
+
+from src.database.core import DbSession
+from src.models import PrimaryKey
+from src.templates import Templates
+
+from .flows import get_message_data
 
 router = APIRouter()
 

@@ -1,8 +1,9 @@
 from typing import Annotated
 
-from collection.flows import get_collection_list
-from database.core import DbSession
 from fastapi import Depends
+
+from src.collection.flows import get_collection_list
+from src.database.core import DbSession
 
 
 def get_common_ui_data(db_session: DbSession) -> dict:
