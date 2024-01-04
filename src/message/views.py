@@ -1,10 +1,13 @@
-from fastapi import APIRouter, Request
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Request
 
 from src.database.core import DbSession
 from src.models import PrimaryKey
 from src.templates import Templates
 
 from .flows import get_message_data
+from .schemas import MessageSend
 
 router = APIRouter()
 
@@ -27,8 +30,9 @@ def get_message(
     )
 
 
-@router.post("")
+@router.post("/{message_id}")
 def send_message(
+    message: Annotated[MessageSend, Depends()],
     request: Request,
     templates: Templates,
 ):
