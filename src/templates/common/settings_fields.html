@@ -1,4 +1,14 @@
 <div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">AMQP URL</p>
+    <div class="w-full">
+        <label for="amqp_url" class="hidden"></label>
+        <input type="text" name="amqp_url" id="amqp_url"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-600 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if message.amqp_url %}
+               value={{ message.amqp_url }} {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
     <p class="w-full text-light-500">Routing Key</p>
     <div class="w-full">
         <label for="routing_key" class="hidden"></label>
@@ -126,10 +136,10 @@
 <div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
     <p class="w-full text-light-500">Message ID</p>
     <div class="w-full">
-        <label for="message_id" class="hidden"></label>
-        <input type="text" name="message_id" id="message_id"
+        <label for="amqp_message_id" class="hidden"></label>
+        <input type="text" name="amqp_message_id" id="amqp_message_id"
                class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-600 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
-                {% if message.message_id %} value={{ message.message_id }} {% endif %}>
+                {% if message.amqp_message_id %} value={{ message.amqp_message_id }} {% endif %}>
     </div>
 </div>
 <div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">

@@ -12,7 +12,14 @@ engine = create_engine(
 
 SessionLocal = sessionmaker(bind=engine)
 
-Base = declarative_base()
+
+class Base:
+    def dict(self):
+        # noinspection PyUnresolvedReferences
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+
+Base = declarative_base(cls=Base)
 
 
 def get_db():

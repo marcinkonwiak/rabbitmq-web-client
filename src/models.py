@@ -27,7 +27,7 @@ class SettingsMixin:
     correlation_id = Column(String)
     reply_to = Column(String)
     expiration = Column(String)
-    message_id = Column(String)
+    amqp_message_id = Column(String)
     timestamp = Column(DateTime)
     type = Column(String)
     user_id = Column(String)
