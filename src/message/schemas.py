@@ -23,5 +23,5 @@ class MessageReadMinimal(BaseModel):
 
 @dataclass
 class MessageUpdate(SettingsFormMixin):
-    # name: str | None = Form(default=None) TODO
+    name: str = Form()
     body: str | None = Form(default=None)

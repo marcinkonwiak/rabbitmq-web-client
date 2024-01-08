@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from datetime import datetime
 
 from fastapi import Form
 from pika.delivery_mode import DeliveryMode
@@ -25,7 +24,7 @@ class SettingsReadMixin:
     reply_to: str | None
     expiration: str | None
     amqp_message_id: str | None
-    timestamp: datetime | None
+    timestamp: str | None
     type: str | None
     user_id: str | None
     app_id: str | None
@@ -40,7 +39,7 @@ class SettingsFormMixin:
     routing_key: str | None = Form(default=None)
     exchange: str | None = Form(default=None)
     consumer_tag: str | None = Form(default=None)
-    delivery_tag: int | None = Form(default=None)
+    delivery_tag: int | None = Form(default=None, gt=0)
     redelivered: bool | None = Form(default=None)
 
     # Message properties
@@ -53,7 +52,7 @@ class SettingsFormMixin:
     reply_to: str | None = Form(default=None)
     expiration: str | None = Form(default=None)
     amqp_message_id: str | None = Form(default=None)
-    timestamp: datetime | None = Form(default=None)
+    timestamp: str | None = Form(default=None, max_length=10)
     type: str | None = Form(default=None)
     user_id: str | None = Form(default=None)
     app_id: str | None = Form(default=None)

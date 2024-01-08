@@ -11,7 +11,7 @@ router = APIRouter()
 def index(request: Request, db_session: DbSession, templates: Templates):
     collection_list = get_collection_list(db_session)
 
-    return templates.TemplateResponse(
+    return templates.HtmxAwareTemplateResponse(
         "dashboard/dashboard.html",
         {"request": request, "collections": collection_list.collections},
     )

@@ -10,6 +10,14 @@ def get(db_session: Session, message_id: int) -> Message | None:
     return db_session.get(Message, message_id)
 
 
+def create(db_session: Session) -> Message:
+    message = Message(name="New Message")
+    db_session.add(message)
+    db_session.commit()
+
+    return message
+
+
 def update(
     db_session: Session,
     message: Message,
@@ -24,3 +32,8 @@ def update(
 
     db_session.commit()
     return message
+
+
+def delete(db_session: Session, message: Message) -> None:
+    db_session.delete(message)
+    db_session.commit()

@@ -1,0 +1,19 @@
+{% extends "common/dropdown_menu.html" %}
+{% block options %}
+    <div id="options-menu"
+         class="origin-top-left absolute mt-2 p-1 w-32 rounded-xl
+                 bg-dark-400 border border-light-800
+                 shadow-md hidden
+                 "
+         role="menu">
+        <div role="none">
+            <a hx-delete="/message/{{ message.id }}"
+               hx-swap="innerHTML"
+               hx-target="#mid-col"
+               class="block px-4 py-2 text-sm text-light-500
+                       rounded-xl hover:bg-dark-200 active:bg-dark-400 focus:outline-none
+                       "
+               role="menuitem">Delete</a>
+        </div>
+    </div>
+{% endblock %}

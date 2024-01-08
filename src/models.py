@@ -1,6 +1,6 @@
 from pika.delivery_mode import DeliveryMode
 from pydantic import conint
-from sqlalchemy import Boolean, Column, DateTime, Enum, Integer, String
+from sqlalchemy import Boolean, Column, Enum, Integer, String
 from sqlalchemy.dialects.sqlite import JSON
 
 from src.database.core import Base
@@ -28,7 +28,7 @@ class SettingsMixin:
     reply_to = Column(String)
     expiration = Column(String)
     amqp_message_id = Column(String)
-    timestamp = Column(DateTime)
+    timestamp = Column(String(length=10))
     type = Column(String)
     user_id = Column(String)
     app_id = Column(String)

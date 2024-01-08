@@ -1,7 +1,7 @@
-<div class="flex flex-col w-72 divide-y divide-light-600">
+<div class="flex flex-col w-72 divide-y divide-light-800">
     <div class="flex flex-col">
         <div class="flex flex-row px-3 py-6 justify-around align-middle">
-            <div class="bg-light-600 h-12 w-12 rounded-lg"></div>
+            <div class="bg-light-800 h-12 w-12 rounded-lg"></div>
             <div class="text-1xl font-semibold text-light-500 px-3 my-auto">
                 RabbitMQ-Web-UI
             </div>
@@ -12,7 +12,7 @@
                 <div class="relative">
                     <input type="text" name="search" id="search"
                            placeholder="Search..."
-                           class="w-full py-1 pl-10 pr-4 rounded-xl text-light-500 placeholder-light-500 border border-light-600 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500">
+                           class="w-full py-1 pl-10 pr-4 rounded-xl text-light-500 placeholder-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500">
                     <div class="flex items-center w-min absolute inset-0 left-0 pl-3 stroke-light-500">
                         <svg fill="none" stroke-linecap="round"
                              stroke-linejoin="round" stroke-width="1.5"
@@ -29,16 +29,16 @@
             <div class="flex flex-col h-min w-full">
                 <div class="p-1 px-5
                     text-center whitespace-nowrap overflow-hidden text-ellipsis
-                    rounded-xl text-light-500 border border-light-600 bg-dark-400
+                    rounded-xl text-light-500 border border-light-800 bg-dark-400
                     hover:bg-dark-300">
                     {{ collection.name }}
                 </div>
                 {% if collection.messages %}
-                    <div class="flex flex-col ml-3 mt-3 border-l border-light-600 gap-y-3">
+                    <div class="flex flex-col ml-3 mt-3 border-l border-light-800 gap-y-3">
                         {% for message in collection.messages %}
                             <a href="/message/{{ message.id }}" class="p-1 px-5 ml-5
                             text-center whitespace-nowrap overflow-hidden text-ellipsis
-                            rounded-xl text-light-500 border border-light-600 bg-dark-400
+                            rounded-xl text-light-500 border border-light-800 bg-dark-400
                             hover:bg-dark-300">
                                 {{ message.name }}
                             </a>

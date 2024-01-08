@@ -1,0 +1,19 @@
+<div class="relative flex cursor-pointer justify-center p-1 rounded-md">
+    <label for="{{ name }}" class="hidden"></label>
+    <input type="checkbox" name="{{ name }}" id="{{ name }}"
+           class=" h-5 w-5 peer cursor-pointer appearance-none relative transition-all
+               bg-dark-300 border border-light-800
+               focus:outline-none focus:ring-2 focus:ring-accent-500 outline-none
+               checked:border-accent-500 checked:bg-accent-500 rounded-md"
+            {% if enabled %} checked="checked" {% endif %}>
+
+    <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5"
+             viewBox="0 0 20 20" fill="currentColor" stroke="currentColor"
+             stroke-width="1">
+            <path fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+        </svg>
+    </div>
+</div>
