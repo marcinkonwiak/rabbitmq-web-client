@@ -1,7 +1,18 @@
-<div class="flex flex-col w-72 divide-y divide-light-800">
+<div id="sidebar" class="flex flex-col w-72 divide-y divide-light-800"
+     hx-get="/sidebar"
+     hx-trigger="update-sidebar from:body"
+     hx-target="this"
+     hx-disinherit="*"
+     hx-ext="morph"
+     hx-swap="morph:outerHTML"
+     sidebar
+>
     <div class="flex flex-col">
         <div class="flex flex-row px-3 py-6 justify-around align-middle">
-            <div class="bg-light-800 h-12 w-12 rounded-lg"></div>
+            <a href="/" class="bg-light-800 h-12 w-12 rounded-lg"
+               hx-boost="true"
+               hx-target="#mid-col"
+            ></a>
             <div class="text-1xl font-semibold text-light-500 px-3 my-auto">
                 RabbitMQ-Web-UI
             </div>
@@ -24,28 +35,58 @@
             </div>
         </div>
     </div>
-    <div hx-boost="true" hx-target="#mid-col" class="flex flex-col flex-grow py-6 px-5 gap-y-3 items-center">
-        {% for collection in collections %}
-            <div class="flex flex-col h-min w-full">
-                <div class="p-1 px-5
-                    text-center whitespace-nowrap overflow-hidden text-ellipsis
-                    rounded-xl text-light-500 border border-light-800 bg-dark-400
-                    hover:bg-dark-300">
-                    {{ collection.name }}
-                </div>
-                {% if collection.messages %}
-                    <div class="flex flex-col ml-3 mt-3 border-l border-light-800 gap-y-3">
-                        {% for message in collection.messages %}
-                            <a href="/message/{{ message.id }}" class="p-1 px-5 ml-5
-                            text-center whitespace-nowrap overflow-hidden text-ellipsis
-                            rounded-xl text-light-500 border border-light-800 bg-dark-400
-                            hover:bg-dark-300">
-                                {{ message.name }}
-                            </a>
+    <div class="flex flex-col flex-grow py-6 items-center overflow-auto" hx-boost="true" hx-target="#mid-col">
+        <div id="empty-target" class="p-1 w-full border-b-2 border-dashed border-accent-500 border-opacity-0" sidebar-target></div>
+        {% for item in sidebar_items %}
+            {% set is_collection = item.type == "collection" %}
+            <div id="target-{{ item.type }}-{{ item.id }}" class="flex flex-col h-min w-full pb-2 px-5 border-b-2 border-dashed border-accent-500 border-opacity-0" sidebar-target sidebar-weight="{{ item.weight }}">
+                <a id="item-{{ item.type }}-{{ item.id }}" class="flex text-center whitespace-nowrap overflow-hidden text-ellipsis rounded-xl text-light-500 border border-light-800 bg-dark-400 hover:bg-dark-300"
+                   href="/{{ item.type }}/{{ item.id }}"
+                   sidebar-weight="{{ item.weight }}"
+                   sidebar-item-type="{{ item.type }}"
+                   sidebar-item="{{ item.id }}"
+                   draggable="true"
+                >
+                    {% if is_collection %}
+                        <div class="flex px-3 py-1 h-full items-center stroke-light-500 -rotate-90" sidebar-collection-toggle="{{ item.id }}">
+                            <svg fill="none" stroke-linecap="round"
+                                 stroke-linejoin="round" stroke-width="1.5"
+                                 viewBox="0 0 24 24" class="w-4 h-4">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    {% endif %}
+                    <div class="w-full pr-5 py-1 text-center whitespace-nowrap overflow-hidden text-ellipsis
+                         {% if not is_collection %}pl-10{% endif %}
+                    ">
+                        {{ item.name }}
+                    </div>
+                </a>
+
+                {% if is_collection %}
+                    <div id="collection-container-{{ item.type }}-{{ item.id }}" class="ml-5 border-l border-light-800 hidden" sidebar-collection-container="{{ item.id }}">
+                        <div id="empty-collection-target-{{ item.type }}-{{ item.id }}" class="h-3 ml-6 border-b-2 border-dashed border-accent-500 border-opacity-0" sidebar-parent="{{ item.id }}" sidebar-target></div>
+                        {% for message in item.messages %}
+                            <div id="collection-target-{{ item.type }}-{{ item.id }}" class="flex flex-col h-min pb-2 ml-6 border-b-2 border-dashed border-accent-500 border-opacity-0" sidebar-target sidebar-parent="{{ item.id }}" sidebar-weight="{{ message.weight }}">
+                                <a id="collection-item-{{ item.type }}-{{ item.id }}" href="/message/{{ message.id }}"
+                                   class="py-1 px-5 text-center whitespace-nowrap overflow-hidden text-ellipsis rounded-xl text-light-500 border border-light-800 bg-dark-400 hover:bg-dark-300"
+                                   sidebar-parent="{{ item.id }}"
+                                   sidebar-weight="{{ message.weight }}"
+                                   sidebar-item-type="{{ message.type }}"
+                                   sidebar-item="{{ message.id }}"
+                                   draggable="true"
+                                >
+                                    {{ message.name }}
+                                </a>
+                            </div>
                         {% endfor %}
                     </div>
                 {% endif %}
+
             </div>
         {% endfor %}
     </div>
+    <script>
+        sidebar.setup();
+    </script>
 </div>

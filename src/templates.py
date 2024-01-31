@@ -40,8 +40,7 @@ class HtmxAwareTemplates(Jinja2Templates):
         request = cast(Request, context["request"])
 
         if request.headers.get("HX-Request") != "true":
-            context.update({"template_path": name})
-            context["collections"] = self.common_ui_data["collections"]
+            context.update({"template_path": name, **self.common_ui_data})
             name = "partial_to_full.html"
 
         return self.TemplateResponse(

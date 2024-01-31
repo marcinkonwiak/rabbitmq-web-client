@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}"
           type="text/css"/>
     <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+    <script src="https://unpkg.com/idiomorph/dist/idiomorph-ext.min.js"></script>
 
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -16,52 +17,15 @@
 </head>
 
 <body class="bg-dark-500 text-light-300 h-screen m-0 flex" spellcheck="false">
-<div class="flex flex-row flex-1 divide-x divide-light-800 overflow-auto">
-    {% include "common/sidebar.html" %}
-    <div id="mid-col" class="flex flex-col flex-1 overflow-auto">
-        {% block content %}
-        {% endblock %}
+    <script src="{{ url_for('static', path='js/sidebar.js') }}"></script>
+
+    <div class="flex flex-row flex-1 divide-x divide-light-800 overflow-auto">
+        {% include "common/sidebar.html" %}
+        <div id="mid-col" class="flex flex-col flex-1 overflow-auto">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
-</div>
+    <script src="{{ url_for('static', path='js/errorHandler.js') }}"></script>
 </body>
-<script>
-    document.body.addEventListener('htmx:beforeSwap', function (evt) {
-        if (evt.detail.xhr.status === 404) {
-            alert("Could Not Find Resource");
-        } else if (evt.detail.xhr.status === 422) {
-            evt.detail.isError = false;
-
-            let errors = JSON.parse(evt.detail.serverResponse);
-            errors = errors.detail.map(item => [item.loc[1], item.msg]);
-
-            for (const value of errors) {
-                Toastify({
-                    title: "Error",
-                    text: `${humanize(value[0])}: ${value[1]}`,
-                    duration: 5000,
-                    gravity: "bottom",
-                    position: "right",
-                    stopOnFocus: true,
-                    style: {
-                        "background": "var(--dark-500)",
-                        "border-radius": "0.5rem",
-                        "color": "var(--light-300)",
-                        "text-align": "left",
-                        "box-shadow": "none",
-                        "width": "20rem",
-                        "border-left": "0.5rem solid var(--error-500)",
-                    }
-                }).showToast();
-            }
-        }
-    });
-
-    function humanize(str) {
-        const frags = str.split('_');
-        for (let i = 0; i < frags.length; i++) {
-            frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-        }
-        return frags.join(' ');
-    }
-</script>
 </html>

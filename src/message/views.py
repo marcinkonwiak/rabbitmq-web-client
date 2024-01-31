@@ -1,14 +1,16 @@
+from dataclasses import asdict
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, Request, Response
 
 from src.database.core import DbSession
 from src.models import PrimaryKey
 from src.templates import Templates
 
-from .flows import get_message_data, get_message_from_id
-from .schemas import MessageUpdate
-from .service import create, delete, update
+from .flows import create_message as create_message_flow
+from .flows import get_message_data, get_message_from_id, move
+from .schemas import MessageMove, MessageUpdate
+from .service import delete, update
 
 router = APIRouter()
 
@@ -38,7 +40,7 @@ def create_message(
     db_session: DbSession,
     templates: Templates,
 ):
-    message = create(db_session)
+    message = create_message_flow(db_session)
     message_data = get_message_data(message)
 
     return templates.HtmxAwareTemplateResponse(
@@ -47,7 +49,10 @@ def create_message(
             "request": request,
             "message": message_data,
         },
-        headers={"HX-Push-Url": f"/message/{message.id}"},
+        headers={
+            "HX-Push-Url": f"/message/{message.id}",
+            "HX-Trigger": "update-sidebar",
+        },
     )
 
 
@@ -60,11 +65,15 @@ def send_message(
     templates: Templates,
 ):
     message = get_message_from_id(db_session, message_id)
-    update(db_session, message, message_in)
+    headers = (
+        {"HX-Trigger": "update-sidebar"} if message.name != message_in.name else {}
+    )
+    update(db_session, message, asdict(message_in))
 
     return templates.TemplateResponse(
         "common/send_button/send_button_success.html",
         {"request": request},
+        headers=headers,
     )
 
 
@@ -81,5 +90,23 @@ def delete_message(
     return templates.TemplateResponse(
         "dashboard/dashboard.html",
         {"request": request},
-        headers={"HX-Replace-Url": "/"},
+        headers={
+            "HX-Replace-Url": "/",
+            "HX-Trigger": "update-sidebar",
+        },
+    )
+
+
+@router.post("/{message_id}/move")
+def move_message(
+    message_id: PrimaryKey,
+    move_in: Annotated[MessageMove, Depends()],
+    db_session: DbSession,
+):
+    message = get_message_from_id(db_session, message_id)
+    move(db_session, message, move_in.collection_id, move_in.prev_item_weight)
+
+    return Response(
+        status_code=204,
+        headers={"HX-Trigger": "update-sidebar"},
     )
