@@ -37,8 +37,7 @@ def create_message(db_session: Session) -> Message:
         0,
         exclude_id=message.id,
     )
-    move_sidebar_item(message, next_item, 0)
-    db_session.commit()
+    move_sidebar_item(db_session, message, next_item, 0)
 
     return message
 
@@ -55,7 +54,4 @@ def move(
         prev_item_weight,
         exclude_id=message.id,
     )
-    move_sidebar_item(message, next_item, prev_item_weight)
-
-    message.collection_id = collection_id
-    db_session.commit()
+    move_sidebar_item(db_session, message, next_item, prev_item_weight, collection_id)

@@ -4,6 +4,7 @@ from fastapi import Depends
 
 from src.database.core import DbSession
 from src.ui.schemas import SidebarItem
+from src.ui.service import fix_sidebar_item_weights
 
 
 def get_common_ui_data(db_session: DbSession) -> dict:
@@ -32,9 +33,11 @@ def get_sidebar_items(db_session: DbSession) -> list[SidebarItem]:
 
 
 def move_sidebar_item(
+    db_session: DbSession,
     item: SidebarItem,
     next_item_weight: float | None,
     prev_item_weight: float | None,
+    collection_id: int | None = None,
 ) -> SidebarItem:
     if prev_item_weight is None:
         prev_item_weight = 0
@@ -44,4 +47,11 @@ def move_sidebar_item(
     else:
         item.weight = prev_item_weight + 1
 
+    # in case float precision is not enough and the weights end up being the same
+    if item.weight in [next_item_weight, prev_item_weight]:
+        fix_sidebar_item_weights(db_session)
+
+    item.collection_id = collection_id
+
+    db_session.commit()
     return item

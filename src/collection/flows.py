@@ -39,6 +39,4 @@ def move(
         prev_item_weight,
         exclude_id=collection.id,
     )
-    move_sidebar_item(collection, next_item, prev_item_weight)
-
-    db_session.commit()
+    move_sidebar_item(db_session, collection, next_item, prev_item_weight)
