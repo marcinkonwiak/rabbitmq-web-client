@@ -6,7 +6,15 @@ from fastapi import Form
 from pydantic import BaseModel, ConfigDict
 
 from src.message.schemas import MessageReadMinimal
+from src.schemas import SettingsFormMixin, SettingsReadMixin
 from src.ui.schemas import SidebarItem
+
+
+class CollectionRead(BaseModel, SettingsReadMixin):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
 
 
 class CollectionReadMinimal(SidebarItem):
@@ -18,6 +26,12 @@ class CollectionReadMinimal(SidebarItem):
 
 class CollectionList(BaseModel):
     collections: Sequence[CollectionReadMinimal]
+
+
+@dataclass
+class CollectionUpdate(SettingsFormMixin):
+    name: str = Form()
+    body: str | None = Form(default=None)
 
 
 @dataclass

@@ -60,9 +60,7 @@ def create_message(
 def send_message(
     message_id: PrimaryKey,
     message_in: Annotated[MessageUpdate, Depends()],
-    request: Request,
     db_session: DbSession,
-    templates: Templates,
 ):
     message = get_message_from_id(db_session, message_id)
     headers = (
@@ -70,9 +68,8 @@ def send_message(
     )
     update(db_session, message, asdict(message_in))
 
-    return templates.TemplateResponse(
-        "common/send_button/send_button_success.html",
-        {"request": request},
+    return Response(
+        status_code=204,
         headers=headers,
     )
 

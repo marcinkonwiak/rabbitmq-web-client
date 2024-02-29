@@ -5,8 +5,12 @@ from src.ui.flows import move_sidebar_item
 from src.ui.service import get_next_item_weight
 
 from .models import Collection
-from .schemas import CollectionList
+from .schemas import CollectionList, CollectionRead
 from .service import get, get_all
+
+
+def get_collection_data(collection: Collection) -> CollectionRead:
+    return CollectionRead.model_validate(collection)
 
 
 def get_collection_list(db_session: Session) -> CollectionList:

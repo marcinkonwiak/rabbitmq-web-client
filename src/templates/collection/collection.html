@@ -1,7 +1,6 @@
 <form
         class="flex flex-col divide-y divide-light-800 h-full"
-        hx-post="/message/{{ message.id }}"
-        hx-swap="none"
+        hx-post="/collection/{{ collection.id }}"
         autocomplete="off"
 >
     <div class="py-2 pl-2 pr-5 flex flex-row gap-x-6 items-center justify-between">
@@ -12,37 +11,30 @@
                    whitespace-nowrap overflow-hidden text-ellipsis
                    bg-dark-500 focus:bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500
                    rounded-lg"
-                    {% if message.name %} value="{{ message.name }}" {% endif %}>
+                    {% if collection.name %} value="{{ collection.name }}" {% endif %}>
         </div>
-        {% with message=message %}
-            {% include "message/dropdown_menu.html" %}
+        {% with collection=collection %}
+            {% include "collection/dropdown_menu.html" %}
         {% endwith %}
         <div class="flex flex-col w-48">
-            <button id="send_button"
+            <button id="save_button"
                     class="text-light-400 py-1 px-5 rounded-xl whitespace-nowrap border border-light-800 bg-dark-400
                 focus:border-opacity-0 focus:outline-none focus:ring-2 focus:ring-accent-500
                 hover:bg-dark-300 active:bg-dark-400"
                     type="submit"
             >
-                Send
+                Save
             </button>
         </div>
     </div>
     <div class="flex flex-col flex-1 overflow-auto">
         <p class="my-3 mx-5 text-xl font-semibold text-light-500">Config</p>
-        <div class="mx-5 flex flex-col h-15-8rem overflow-auto outline outline-1 outline-light-800 rounded-xl">
+        <div class="mx-5 mb-3 flex flex-col overflow-auto outline outline-1 outline-light-800 rounded-xl">
             <div class="flex flex-col flex-1 flex-wrap divide-y divide-light-800">
-                {% with item=message %}
+                {% with item=collection %}
                     {% include "common/settings_fields.html" %}
                 {% endwith %}
             </div>
-        </div>
-        <p class="my-3 mx-5 text-xl font-semibold text-light-500">Data</p>
-        <div class="mx-5 mt-1 mb-5 flex flex-1">
-            <label for="body" class="hidden"></label>
-            <textarea name="body" id="body"
-                      class="w-full h-full pt-1 px-2 text-light-500 border border-light-800 rounded-xl bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500 resize-none"
-            >{% if message.body %}{{ message.body }}{% endif %}</textarea>
         </div>
     </div>
 </form>

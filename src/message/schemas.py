@@ -22,14 +22,14 @@ class MessageReadMinimal(SidebarItem):
     type: ClassVar[str] = "message"
 
 
+class MessageList(BaseModel):
+    messages: Sequence[MessageReadMinimal]
+
+
 @dataclass
 class MessageUpdate(SettingsFormMixin):
     name: str = Form()
     body: str | None = Form(default=None)
-
-
-class MessageList(BaseModel):
-    messages: Sequence[MessageReadMinimal]
 
 
 @dataclass

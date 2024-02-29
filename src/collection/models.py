@@ -12,4 +12,6 @@ class Collection(Base, ItemSettingsMixin):
     name = Column(String, nullable=False)
     weight = Column(Float, nullable=False, default=0)
 
-    messages = relationship("Message", back_populates="collection")
+    messages = relationship(
+        "Message", back_populates="collection", cascade="all, delete"
+    )
