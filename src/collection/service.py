@@ -14,6 +14,15 @@ def get_all(db_session: Session) -> Sequence[Collection]:
     return db_session.execute(select(Collection)).scalars().all()
 
 
+def create(db_session: Session, commit: bool = True) -> Collection:
+    collection = Collection(name="New Collection")
+    db_session.add(collection)
+    if commit:
+        db_session.commit()
+
+    return collection
+
+
 def update(
     db_session: Session,
     collection: Collection,

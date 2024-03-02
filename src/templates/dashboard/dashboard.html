@@ -1,5 +1,5 @@
 {% block content %}
-    <div class="flex flex-row flex-1 w-full h-full justify-center items-center">
+    <div class="flex flex-row flex-1 w-full h-full justify-center items-center gap-x-10">
         <button class="flex flex-col items-center justify-center
                        px-4 py-2 w-48 h-48 whitespace-nowrap text-light-500
                        rounded-md border border-light-800 bg-dark-450
@@ -24,6 +24,31 @@
                 <path d="M12 5v14"></path>
             </svg>
             <span>New message</span>
+        </button>
+        <button class="flex flex-col items-center justify-center
+                       px-4 py-2 w-48 h-48 whitespace-nowrap text-light-500
+                       rounded-md border border-light-800 bg-dark-450
+                       focus:border-opacity-0 focus:outline-none focus:ring-2 focus:ring-accent-500
+                       hover:bg-dark-300 active:bg-dark-400"
+                type="button"
+                hx-post="/collection/"
+                hx-swap="innerHTML"
+                hx-target="#mid-col"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1"
+                 stroke-linecap="round"
+                 class="h-16 w-16 mb-2"
+            >
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path>
+            </svg>
+            <span>New collection</span>
         </button>
     </div>
 {% endblock %}

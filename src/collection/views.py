@@ -7,6 +7,7 @@ from src.database.core import DbSession
 from src.models import PrimaryKey
 from src.templates import Templates
 
+from .flows import create_collection as create_collection_flow
 from .flows import get_collection_data, get_collection_from_id, move
 from .schemas import CollectionMove, CollectionUpdate
 from .service import delete, update
@@ -29,6 +30,28 @@ def get_collection(
         {
             "request": request,
             "collection": collection_data,
+        },
+    )
+
+
+@router.post("/")
+def create_collection(
+    request: Request,
+    db_session: DbSession,
+    templates: Templates,
+):
+    collection = create_collection_flow(db_session)
+    collection_data = get_collection_data(collection)
+
+    return templates.HtmxAwareTemplateResponse(
+        "collection/collection.html",
+        {
+            "request": request,
+            "collection": collection_data,
+        },
+        headers={
+            "HX-Push-Url": f"/collection/{collection.id}",
+            "HX-Trigger": "update-sidebar",
         },
     )
 

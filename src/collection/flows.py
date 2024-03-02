@@ -6,7 +6,7 @@ from src.ui.service import get_next_item_weight
 
 from .models import Collection
 from .schemas import CollectionList, CollectionRead
-from .service import get, get_all
+from .service import create, get, get_all
 
 
 def get_collection_data(collection: Collection) -> CollectionRead:
@@ -28,6 +28,19 @@ def get_collection_from_id(db_session: Session, collection_id: int) -> Collectio
             status_code=status.HTTP_404_NOT_FOUND,
             detail=[{"msg": "A collection with this id does not exist."}],
         )
+
+    return collection
+
+
+def create_collection(db_session: Session) -> Collection:
+    collection = create(db_session, False)
+    next_item = get_next_item_weight(
+        db_session,
+        None,
+        0,
+        exclude_id=collection.id,
+    )
+    move_sidebar_item(db_session, collection, next_item, 0)
 
     return collection
 
