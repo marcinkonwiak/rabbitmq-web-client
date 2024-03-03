@@ -29,7 +29,15 @@
         </div>
     </div>
     <div class="flex flex-col flex-1 overflow-auto">
-        <p class="my-3 mx-5 text-xl font-semibold text-light-500">Config</p>
+        <div class="flex items-center justify-between">
+            <p class="my-3 mx-5 text-xl font-semibold text-light-500">Config</p>
+            <div class="flex mx-5 items-center">
+                <p class="my-3 mx-3 text-sm text-light-500">Inherit from collection</p>
+                {% with name="inherit_settings", enabled=message.inherit_settings %}
+                    {% include "common/checkbox.html" %}
+                {% endwith %}
+            </div>
+        </div>
         <div class="mx-5 flex flex-col h-15-8rem overflow-auto outline outline-1 outline-light-800 rounded-xl">
             <div class="flex flex-col flex-1 flex-wrap divide-y divide-light-800">
                 {% with item=message %}

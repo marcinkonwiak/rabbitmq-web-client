@@ -2,10 +2,10 @@ from sqlalchemy import Column, Float, Integer, String
 from sqlalchemy.orm import relationship
 
 from src.database.core import Base
-from src.models import ItemSettingsMixin
+from src.models import SettingsMixin
 
 
-class Collection(Base, ItemSettingsMixin):
+class Collection(Base, SettingsMixin):
     __tablename__ = "collection"
 
     id = Column(Integer, primary_key=True)

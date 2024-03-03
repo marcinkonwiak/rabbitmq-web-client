@@ -15,6 +15,7 @@ class MessageRead(BaseModel, SettingsReadMixin):
     id: int
     name: str
     body: str | None
+    inherit_settings: bool
 
 
 class MessageReadMinimal(SidebarItem):
@@ -30,6 +31,7 @@ class MessageList(BaseModel):
 class MessageUpdate(SettingsFormMixin):
     name: str = Form()
     body: str | None = Form(default=None)
+    inherit_settings: bool = Form(default=False)
 
 
 @dataclass

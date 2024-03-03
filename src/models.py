@@ -36,7 +36,7 @@ class SettingsMixin:
 
 
 class ItemSettingsMixin(SettingsMixin):
-    inherit_settings = Column(Boolean, default=True, nullable=False)
+    inherit_settings = Column(Boolean, default=False, nullable=False)
 
 
 class GlobalSettings(Base, SettingsMixin):
