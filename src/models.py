@@ -14,9 +14,6 @@ class SettingsMixin:
     # Routing details
     routing_key = Column(String)
     exchange = Column(String)
-    consumer_tag = Column(String)
-    delivery_tag = Column(Integer)
-    redelivered = Column(Boolean)
 
     # Message properties
     content_type = Column(String)

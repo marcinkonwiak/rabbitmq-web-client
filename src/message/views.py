@@ -8,7 +8,7 @@ from src.models import PrimaryKey
 from src.templates import Templates
 
 from .flows import create_message as create_message_flow
-from .flows import get_message_data, get_message_from_id, move
+from .flows import get_message_data, get_message_from_id, move, publish_message
 from .schemas import MessageMove, MessageUpdate
 from .service import delete, update
 
@@ -66,7 +66,8 @@ def send_message(
     headers = (
         {"HX-Trigger": "update-sidebar"} if message.name != message_in.name else {}
     )
-    update(db_session, message, asdict(message_in))
+    message = update(db_session, message, asdict(message_in))
+    publish_message(message)
 
     return Response(
         status_code=204,

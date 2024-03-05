@@ -1,6 +1,8 @@
 from fastapi import HTTPException, status
+from pika.exceptions import AMQPError
 from sqlalchemy.orm import Session
 
+import src.rabbitmq.service as rabbitmq_service
 from src.ui.flows import move_sidebar_item
 from src.ui.service import get_next_item_weight
 
@@ -55,3 +57,13 @@ def move(
         exclude_id=message.id,
     )
     move_sidebar_item(db_session, message, next_item, prev_item_weight, collection_id)
+
+
+def publish_message(message: Message):
+    try:
+        rabbitmq_service.publish_message(message)
+    except (AMQPError, ValueError) as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=[{"msg": str(e)}],
+        ) from e

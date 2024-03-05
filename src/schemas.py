@@ -10,9 +10,6 @@ class SettingsReadMixin:
     # Routing details
     routing_key: str | None
     exchange: str | None
-    consumer_tag: str | None
-    delivery_tag: int | None
-    redelivered: bool | None
 
     # Message properties
     content_type: str | None
@@ -38,9 +35,6 @@ class SettingsFormMixin:
     # Routing details
     routing_key: str | None = Form(default=None)
     exchange: str | None = Form(default=None)
-    consumer_tag: str | None = Form(default=None)
-    delivery_tag: int | None = Form(default=None, gt=0)
-    redelivered: bool | None = Form(default=None)
 
     # Message properties
     content_type: str | None = Form(default=None)
