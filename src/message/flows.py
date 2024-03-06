@@ -62,8 +62,9 @@ def move(
 def publish_message(message: Message):
     try:
         rabbitmq_service.publish_message(message)
-    except (AMQPError, ValueError) as e:
+    except (AMQPError, ValueError, OSError) as e:
+        msg = str(e) if str(e) else repr(e)
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=[{"msg": str(e)}],
+            detail=[{"msg": msg}],
         ) from e

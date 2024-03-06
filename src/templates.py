@@ -1,4 +1,3 @@
-import typing
 from collections.abc import Mapping
 from os import PathLike
 from typing import Annotated, cast
@@ -14,16 +13,9 @@ from src.ui.flows import CommonUIData
 class HtmxAwareTemplates(Jinja2Templates):
     common_ui_data: dict
 
-    def __init__(
-        self,
-        directory: str | PathLike,
-        common_ui_data: dict,
-        context_processors: list[typing.Callable[[Request], dict[str, typing.Any]]]
-        | None = None,
-        **env_options: typing.Any,
-    ) -> None:
+    def __init__(self, directory: str | PathLike, common_ui_data: dict) -> None:
         self.common_ui_data = common_ui_data
-        super().__init__(directory, context_processors, **env_options)
+        super().__init__(directory)
 
     def HtmxAwareTemplateResponse(  # noqa
         self,
@@ -44,7 +36,7 @@ class HtmxAwareTemplates(Jinja2Templates):
             name = "partial_to_full.html"
 
         return self.TemplateResponse(
-            name, context, status_code, headers, media_type, background
+            request, name, context, status_code, headers, media_type, background
         )
 
 

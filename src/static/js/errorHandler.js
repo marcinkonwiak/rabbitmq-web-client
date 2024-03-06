@@ -38,7 +38,11 @@ class ErrorHandler {
         for (const value of errors) {
             let text;
             if (Array.isArray(value)) {
-                text = `${value[0]}: ${value[1]}`;
+                if (value.length === 2) {
+                    text = `${value[0]}: ${value[1]}`;
+                } else {
+                    text = value[0];
+                }
             } else {
                 text = value;
             }
