@@ -9,7 +9,7 @@
 >
     <div class="flex flex-col">
         <div class="flex flex-row px-3 py-6 justify-around align-middle">
-            <a href="/" class="bg-light-800 h-12 w-12 rounded-lg"
+            <a href="/" class="h-12 w-12 rounded-lg bg-light-800 focus:border-opacity-0 focus:outline-none focus:ring-2 focus:ring-accent-500"
                hx-boost="true"
                hx-target="#mid-col"
             ></a>
@@ -26,7 +26,7 @@
         {% for item in sidebar_items %}
             {% set is_collection = item.type == "collection" %}
             <div id="target-{{ item.type }}-{{ item.id }}" class="flex flex-col h-min w-full pb-2 px-5 border-b-2 border-dashed border-accent-500 border-opacity-0" sidebar-target sidebar-weight="{{ item.weight }}">
-                <a id="item-{{ item.type }}-{{ item.id }}" class="flex text-center whitespace-nowrap overflow-hidden text-ellipsis rounded-xl text-light-500 border border-light-800 bg-dark-400 hover:bg-dark-300"
+                <a id="item-{{ item.type }}-{{ item.id }}" class="flex text-center whitespace-nowrap overflow-hidden text-ellipsis rounded-xl text-light-500 border border-light-800 bg-dark-400 hover:bg-dark-300 focus:border-opacity-0 focus:outline-none focus:ring-2 focus:ring-accent-500"
                    href="/{{ item.type }}/{{ item.id }}"
                    sidebar-weight="{{ item.weight }}"
                    sidebar-item-type="{{ item.type }}"
@@ -55,7 +55,7 @@
                         {% for message in item.messages %}
                             <div id="collection-target-{{ item.type }}-{{ item.id }}" class="flex flex-col h-min pb-2 ml-6 border-b-2 border-dashed border-accent-500 border-opacity-0" sidebar-target sidebar-parent="{{ item.id }}" sidebar-weight="{{ message.weight }}">
                                 <a id="collection-item-{{ item.type }}-{{ item.id }}" href="/message/{{ message.id }}"
-                                   class="py-1 px-5 text-center whitespace-nowrap overflow-hidden text-ellipsis rounded-xl text-light-500 border border-light-800 bg-dark-400 hover:bg-dark-300"
+                                   class="py-1 px-5 text-center whitespace-nowrap overflow-hidden text-ellipsis rounded-xl text-light-500 border border-light-800 bg-dark-400 hover:bg-dark-300 focus:border-opacity-0 focus:outline-none focus:ring-2 focus:ring-accent-500"
                                    sidebar-parent="{{ item.id }}"
                                    sidebar-weight="{{ message.weight }}"
                                    sidebar-item-type="{{ message.type }}"
