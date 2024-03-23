@@ -3,8 +3,6 @@ from pydantic import conint
 from sqlalchemy import Boolean, Column, Enum, Integer, String
 from sqlalchemy.dialects.sqlite import JSON
 
-from src.database.core import Base
-
 PrimaryKey = conint(gt=0, lt=2147483647)
 
 
@@ -34,9 +32,3 @@ class SettingsMixin:
 
 class ItemSettingsMixin(SettingsMixin):
     inherit_settings = Column(Boolean, default=False, nullable=False)
-
-
-class GlobalSettings(Base, SettingsMixin):
-    __tablename__ = "global_settings"
-
-    id = Column(Integer, primary_key=True)
