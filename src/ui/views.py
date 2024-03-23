@@ -21,7 +21,7 @@ def index(ui_data: CommonUIData, request: Request, templates: Templates):
 @router.get("/sidebar")
 def sidebar(db_session: DbSession, request: Request, templates: Templates):
     return templates.HtmxAwareTemplateResponse(
-        "common/sidebar.html",
+        "common/sidebar/sidebar.html",
         {
             "request": request,
             "sidebar_items": get_sidebar_items(db_session),

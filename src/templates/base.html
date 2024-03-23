@@ -20,12 +20,13 @@
     <script src="{{ url_for('static', path='js/sidebar.js') }}"></script>
 
     <div class="flex flex-row flex-1 divide-x divide-light-800 overflow-auto">
-        {% include "common/sidebar.html" %}
+        {% include "common/sidebar/sidebar.html" %}
         <div id="mid-col" class="flex flex-col flex-1 overflow-auto">
             {% block content %}
             {% endblock %}
         </div>
     </div>
     <script src="{{ url_for('static', path='js/errorHandler.js') }}"></script>
+    <script src="{{ url_for('static', path='js/dropdown.js') }}"></script>
 </body>
 </html>

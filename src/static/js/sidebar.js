@@ -182,8 +182,8 @@ class Sidebar {
             const collectionContainer = doc.querySelector(`[sidebar-collection-container="${collectionId}"]`);
             const collectionToggle = doc.querySelector(`[sidebar-collection-toggle="${collectionId}"]`);
 
-            collectionContainer.classList.remove('hidden');
-            collectionToggle.classList.remove('-rotate-90');
+            collectionContainer?.classList.remove('hidden');
+            collectionToggle?.classList.remove('-rotate-90');
         });
         return doc.body.innerHTML;
     }

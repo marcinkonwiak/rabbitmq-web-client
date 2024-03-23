@@ -18,24 +18,10 @@
             </div>
         </div>
         <div class="flex w-full justify-center mb-6">
-            <div class="w-4/5">
-                <label for="search" class="hidden"></label>
-                <div class="relative">
-                    <input type="text" name="search" id="search"
-                           placeholder="Search..."
-                           class="w-full py-1 pl-10 pr-4 rounded-xl text-light-500 placeholder-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500">
-                    <div class="flex items-center w-min absolute inset-0 left-0 pl-3 stroke-light-500">
-                        <svg fill="none" stroke-linecap="round"
-                             stroke-linejoin="round" stroke-width="1.5"
-                             viewBox="0 0 24 24" class="w-5 h-5">
-                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+            {% include "common/sidebar/sidebar_dropdown_menu.html" %}
         </div>
     </div>
-    <div class="flex flex-col flex-grow py-6 items-center overflow-auto" hx-boost="true" hx-target="#mid-col">
+    <div class="flex flex-col flex-grow pb-6 pt-5 items-center overflow-auto" hx-boost="true" hx-target="#mid-col">
         <div id="empty-target" class="p-1 w-full border-b-2 border-dashed border-accent-500 border-opacity-0" sidebar-target></div>
         {% for item in sidebar_items %}
             {% set is_collection = item.type == "collection" %}

@@ -1,9 +1,9 @@
 <div class="relative inline-block text-left">
-    <button id="options-button"
-            class="py-1 px-1 rounded-xl border border-light-800 bg-dark-400
+    <button class="py-1 px-1 rounded-xl border border-light-800 bg-dark-400
                     focus:border-opacity-0 focus:outline-none focus:ring-2 focus:ring-accent-500
                     hover:bg-dark-300 active:bg-dark-400"
             type="button"
+            dropdown-button="item-dropdown"
     >
         <svg class="h-[24px] w-[24px] fill-light-600"
              xmlns="http://www.w3.org/2000/svg"
@@ -15,17 +15,3 @@
     </button>
     {% block options %}{% endblock %}
 </div>
-<script>
-    dropdownButton = document.getElementById('options-button');
-    dropdownMenu = document.getElementById('options-menu');
-
-    dropdownButton.addEventListener('click', () => {
-        dropdownMenu.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-            dropdownMenu.classList.add('hidden');
-        }
-    });
-</script>
