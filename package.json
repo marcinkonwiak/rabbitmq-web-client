@@ -12,6 +12,7 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "build-css": "tailwindcss ./src/static/css/input.css -o ./src/static/css/main.css"
   }
 }
