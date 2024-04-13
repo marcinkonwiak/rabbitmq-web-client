@@ -54,6 +54,7 @@ def db_session():
 
 @pytest.fixture()
 def client(db_session):
+    # TODO - do client tests
     def override_get_db():
         yield db_session
 
@@ -64,6 +65,16 @@ def client(db_session):
 
 @pytest.fixture()
 def message(db_session):
-    from .factories import MessageFactory
+    from .factories import CollectionFactory, MessageFactory
 
+    MessageFactory._meta.sqlalchemy_session = db_session  # noqa
+    CollectionFactory._meta.sqlalchemy_session = db_session  # noqa
     return MessageFactory()
+
+
+@pytest.fixture()
+def collection(db_session):
+    from .factories import CollectionFactory
+
+    CollectionFactory._meta.sqlalchemy_session = db_session  # noqa
+    return CollectionFactory()

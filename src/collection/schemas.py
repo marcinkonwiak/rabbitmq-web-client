@@ -31,7 +31,6 @@ class CollectionList(BaseModel):
 @dataclass
 class CollectionUpdate(SettingsFormMixin):
     name: str = Form()
-    body: str | None = Form(default=None)
 
 
 @dataclass

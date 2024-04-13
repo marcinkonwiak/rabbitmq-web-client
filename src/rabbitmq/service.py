@@ -1,3 +1,5 @@
+import json
+
 import pika
 
 from src.message.models import Message
@@ -46,5 +48,7 @@ def get_properties(message: Message) -> pika.BasicProperties:
         ]
     }
     properties["message_id"] = properties.pop("amqp_message_id")
+    if properties.get("headers"):
+        properties["headers"] = json.loads(properties["headers"])
 
     return pika.BasicProperties(**properties)
