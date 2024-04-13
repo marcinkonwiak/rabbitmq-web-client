@@ -1,7 +1,9 @@
 /node_modules/
+/src/static/css/main.css
+
 .idea
 *.db
-
+*.sqlite
 *.log
 
 # Byte-compiled / optimized / DLL files

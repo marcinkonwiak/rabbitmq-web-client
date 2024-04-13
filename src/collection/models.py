@@ -1,14 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Float, Integer, String
 from sqlalchemy.orm import relationship
 
-from database.core import Base
-from models import ItemSettingsMixin
+from src.database.core import Base
+from src.models import SettingsMixin
 
 
-class Collection(Base, ItemSettingsMixin):
+class Collection(Base, SettingsMixin):
     __tablename__ = "collection"
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
+    weight = Column(Float, nullable=False, default=0)
 
-    messages = relationship("Message", back_populates="collection")
+    messages = relationship(
+        "Message", back_populates="collection", cascade="all, delete"
+    )

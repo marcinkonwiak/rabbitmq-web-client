@@ -1,25 +1,40 @@
-from typing import Optional
+from collections.abc import Sequence
+from dataclasses import dataclass
+from typing import ClassVar
 
+from fastapi import Form
 from pydantic import BaseModel, ConfigDict
 
-
-class MessageSend(BaseModel):
-    queue: str
-    exchange: str
-    data: str
+from src.schemas import SettingsFormMixin, SettingsReadMixin
+from src.ui.schemas import SidebarItem
 
 
-class MessageRead(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    name: str
-    queue: Optional[str]
-    exchange: Optional[str]
-    body: Optional[str]
-
-
-class MessageReadMinimal(BaseModel):
+class MessageRead(BaseModel, SettingsReadMixin):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
     name: str
+    body: str | None
+    inherit_settings: bool
+
+
+class MessageReadMinimal(SidebarItem):
+    model_config = ConfigDict(from_attributes=True)
+    type: ClassVar[str] = "message"
+
+
+class MessageList(BaseModel):
+    messages: Sequence[MessageReadMinimal]
+
+
+@dataclass
+class MessageUpdate(SettingsFormMixin):
+    name: str = Form()
+    body: str | None = Form(default=None)
+    inherit_settings: bool = Form(default=False)
+
+
+@dataclass
+class MessageMove:
+    collection_id: int | None = Form(default=None)
+    prev_item_weight: float | None = Form(default=None)

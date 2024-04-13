@@ -1,0 +1,17 @@
+<div class="relative inline-block text-left">
+    <button class="py-1 px-1 rounded-xl border border-light-800 bg-dark-400
+                    focus:border-opacity-0 focus:outline-none focus:ring-2 focus:ring-accent-500
+                    hover:bg-dark-300 active:bg-dark-400"
+            type="button"
+            dropdown-button="item-dropdown"
+    >
+        <svg class="h-[24px] w-[24px] fill-light-600"
+             xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24">
+            <circle cx="12" cy="5" r="2"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+            <circle cx="12" cy="19" r="2"></circle>
+        </svg>
+    </button>
+    {% block options %}{% endblock %}
+</div>

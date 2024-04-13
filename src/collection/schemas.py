@@ -1,17 +1,38 @@
-from typing import List
+from collections.abc import Sequence
+from dataclasses import dataclass
+from typing import ClassVar
 
+from fastapi import Form
 from pydantic import BaseModel, ConfigDict
 
-from message.schemas import MessageReadMinimal
+from src.message.schemas import MessageReadMinimal
+from src.schemas import SettingsFormMixin, SettingsReadMixin
+from src.ui.schemas import SidebarItem
 
 
-class CollectionReadMinimal(BaseModel):
+class CollectionRead(BaseModel, SettingsReadMixin):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
     name: str
-    messages: List[MessageReadMinimal]
+
+
+class CollectionReadMinimal(SidebarItem):
+    model_config = ConfigDict(from_attributes=True)
+
+    type: ClassVar[str] = "collection"
+    messages: list[MessageReadMinimal]
 
 
 class CollectionList(BaseModel):
-    collections: List[CollectionReadMinimal]
+    collections: Sequence[CollectionReadMinimal]
+
+
+@dataclass
+class CollectionUpdate(SettingsFormMixin):
+    name: str = Form()
+
+
+@dataclass
+class CollectionMove:
+    prev_item_weight: float | None = Form(default=None)

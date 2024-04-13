@@ -1,0 +1,162 @@
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">AMQP URL</p>
+    <div class="w-full">
+        <label for="amqp_url" class="hidden"></label>
+        <input type="text" name="amqp_url" id="amqp_url"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.amqp_url %}
+               value="{{ item.amqp_url }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Routing Key</p>
+    <div class="w-full">
+        <label for="routing_key" class="hidden"></label>
+        <input type="text" name="routing_key" id="routing_key"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.routing_key %}
+               value="{{ item.routing_key }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Exchange</p>
+    <div class="w-full">
+        <label for="exchange" class="hidden"></label>
+        <input type="text" name="exchange" id="exchange"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.exchange %} value="{{ item.exchange }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Content Type</p>
+    <div class="w-full">
+        <label for="content_type" class="hidden"></label>
+        <input type="text" name="content_type" id="content_type"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.content_type %}
+               value="{{ item.content_type }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Content Encoding</p>
+    <div class="w-full">
+        <label for="content_encoding" class="hidden"></label>
+        <input type="text" name="content_encoding" id="content_encoding"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.content_encoding %}
+               value="{{ item.content_encoding }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Headers (JSON format)</p>
+    <div class="w-full">
+        <label for="headers" class="hidden"></label>
+        <input type="text" name="headers" id="headers"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.headers %} value="{{ item.headers }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Delivery Mode</p>
+    <div class="w-full">
+        <label for="delivery_mode" class="hidden"></label>
+        <input type="text" name="delivery_mode" id="delivery_mode"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.delivery_mode %}
+               value="{{ item.delivery_mode }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Priority</p>
+    <div class="w-full">
+        <label for="priority" class="hidden"></label>
+        <input type="number" name="priority" id="priority"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.priority %} value="{{ item.priority }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Correlation ID</p>
+    <div class="w-full">
+        <label for="correlation_id" class="hidden"></label>
+        <input type="text" name="correlation_id" id="correlation_id"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.correlation_id %}
+               value="{{ item.correlation_id }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Reply To</p>
+    <div class="w-full">
+        <label for="reply_to" class="hidden"></label>
+        <input type="text" name="reply_to" id="reply_to"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.reply_to %} value="{{ item.reply_to }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Expiration</p>
+    <div class="w-full">
+        <label for="expiration" class="hidden"></label>
+        <input type="text" name="expiration" id="expiration"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.expiration %}
+               value="{{ item.expiration }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Message ID</p>
+    <div class="w-full">
+        <label for="amqp_message_id" class="hidden"></label>
+        <input type="text" name="amqp_message_id" id="amqp_message_id"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.amqp_message_id %}
+               value="{{ item.amqp_message_id }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Timestamp</p>
+    <div class="w-full">
+        <label for="timestamp" class="hidden"></label>
+        <input type="text" name="timestamp" id="timestamp"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.timestamp %} value="{{ item.timestamp }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Type</p>
+    <div class="w-full">
+        <label for="type" class="hidden"></label>
+        <input type="text" name="type" id="type"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.type %} value="{{ item.type }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">User ID</p>
+    <div class="w-full">
+        <label for="user_id" class="hidden"></label>
+        <input type="text" name="user_id" id="user_id"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.user_id %} value="{{ item.user_id }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">App ID</p>
+    <div class="w-full">
+        <label for="app_id" class="hidden"></label>
+        <input type="text" name="app_id" id="app_id"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.app_id %} value="{{ item.app_id }}" {% endif %}>
+    </div>
+</div>
+<div class="flex flex-row justify-between items-baseline py-2 px-3 gap-x-3">
+    <p class="w-full text-light-500">Cluster ID</p>
+    <div class="w-full">
+        <label for="cluster_id" class="hidden"></label>
+        <input type="text" name="cluster_id" id="cluster_id"
+               class="w-full py-1 px-2 rounded-xl text-light-500 border border-light-800 bg-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                {% if item.cluster_id %}
+               value="{{ item.cluster_id }}" {% endif %}>
+    </div>
+</div>
