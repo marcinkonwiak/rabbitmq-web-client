@@ -19,11 +19,22 @@ docker run -p 8000:8000 -v rabbitmq-web-client:/app/data marcinkonwiak/rabbitmq-
 
 ### Running the project locally
 
-After creating a virtual environment:
+In a virtual environment:
 ```bash
 pip install -r requirements-dev.txt
 alembic upgrade head
 uvicorn src.main:app --reload
+```
+
+### Compiling webpack
+```bash
+npx webpack
+```
+
+### Running Tailwind
+```bash
+npm install
+npx tailwindcss -i ./src/static/css/input.css -o ./src/static/css/main.css --watch
 ```
 
 ### Testing
